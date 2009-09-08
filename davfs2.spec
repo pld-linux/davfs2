@@ -2,17 +2,16 @@ Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
 Version:	1.4.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/%{name}/%{name}-%{version}.tar.gz
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	neon-devel >= 0.24
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.118
-Requires(post):	fileutils
-Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
@@ -48,29 +47,32 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 %setup -q
 
 %build
-%configure
+
+#%{__libtoolize}
+#%{__aclocal}
+#%{__autoconf}
+#%{__autoheader}
+#%{__automake}
+%configure --sbindir=/sbin
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/sbin
-install -d $RPM_BUILD_ROOT%{_mandir}/{man5,man8}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+%{__make} install \
+        DESTDIR=$RPM_BUILD_ROOT
+
 install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
 
-install src/{,u}mount.davfs $RPM_BUILD_ROOT/sbin
-install etc/{davfs2.conf,secrets} $RPM_BUILD_ROOT%{_sysconfdir}/%{name}
-install man/*.5 $RPM_BUILD_ROOT%{_mandir}/man5/
-install man/*.8 $RPM_BUILD_ROOT%{_mandir}/man8/
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-%groupadd -g 322 davfs2
-%useradd -u 322 -r -d /var/cache/%{name} -s /bin/false -c "DAVfs User" -g davfs2 davfs2
+%groupadd -g 242 davfs2
+%useradd -u 242 -r -d /var/cache/%{name} -s /bin/false -c "DAVfs User" -g davfs2 davfs2
 
 %postun
 if [ "$1" = "0" ]; then
@@ -78,15 +80,24 @@ if [ "$1" = "0" ]; then
 	%groupremove davfs2
 fi
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 
-%doc ABOUT-NLS COPYING INSTALL README.translators aclocal.m4 AUTHORS ChangeLog NEWS THANKS BUGS FAQ README TODO
+%doc %{_docdir}/*
+
 %{_mandir}/man5/*
 %{_mandir}/man8/*
+%{_usr}/share/%{name}/*
+
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %attr(600,root,root) %{_sysconfdir}/%{name}/secrets
-%config %{_sysconfdir}/%{name}/davfs2.conf
+%config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
 
-%attr(755,root,root) /sbin/*
+%attr(755,root,root) /sbin/mount.davfs
+%attr(755,root,root) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
+
+%lang(de) %{_mandir}/de/man5/*
+%lang(de) %{_mandir}/de/man8/*
+
+%lang(es) %{_mandir}/es/man5/*
