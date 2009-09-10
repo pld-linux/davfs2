@@ -7,8 +7,8 @@ License:	GPL
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
 URL:		http://savannah.nongnu.org/projects/davfs2
-#BuildRequires:	autoconf
-#BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	neon-devel >= 0.24
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.118
@@ -47,12 +47,10 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 %setup -q
 
 %build
-
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__autoheader}
-#%{__automake}
+%{__aclocal} -I config
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--sbindir=/sbin \
 
