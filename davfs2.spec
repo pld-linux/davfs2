@@ -60,10 +60,12 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
         DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
+
 %find_lang %{name}
 
 %clean
