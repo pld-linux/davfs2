@@ -52,17 +52,16 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 %{__autoheader}
 %{__automake}
 %configure \
-	--sbindir=/sbin \
+	--sbindir="/sbin"
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
 
 %{__make} install \
         DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
 
 %find_lang %{name}
 
@@ -82,15 +81,14 @@ fi
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc %{_docdir}/*
-%{_mandir}/man5/*
-%{_mandir}/man8/*
-%{_usr}/share/%{name}/*
+%{_mandir}/man5/*.5*
+%{_mandir}/man8/*.8*
+%{_datadir}/%{name}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %attr(600,root,root) %{_sysconfdir}/%{name}/secrets
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
 %attr(755,root,root) /sbin/mount.davfs
 %attr(755,root,root) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
-%lang(de) %{_mandir}/de/man5/*
-%lang(de) %{_mandir}/de/man8/*
-%lang(es) %{_mandir}/es/man5/*
+%lang(de) %{_mandir}/de/man[58]/*
+%lang(es) %{_mandir}/es/man5/*.5*
