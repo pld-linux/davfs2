@@ -2,13 +2,13 @@ Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
 Version:	1.4.1
-Release:	0.2
+Release:	0.3
 License:	GPL
 Group:		Networking/Utilities
-Source0:	http://download.savannah.gnu.org/releases-noredirect/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
 URL:		http://savannah.nongnu.org/projects/davfs2
-BuildRequires:	autoconf
-BuildRequires:	automake
+#BuildRequires:	autoconf
+#BuildRequires:	automake
 BuildRequires:	neon-devel >= 0.24
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.118
@@ -37,9 +37,9 @@ This package contains the caching version of davfs.
 %description -l pl.UTF-8
 WebDAV to bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie.
 Zazwyczaj protokół HTTP jest protokołem tylko do odczytu ale po
-zainstalowaniu DAVa staje się on również zapisywalnym. Co więcej jeśli
-używasz DAVfs to możesz montować swój serwer WWW jako system plików i
-używać tak jak normalnego dysku.
+zainstalowaniu DAVa staje się on również zapisywalnym. Co więcej
+jeśli używasz DAVfs to możesz montować swój serwer WWW jako
+system plików i używać tak jak normalnego dysku.
 
 Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 
@@ -53,18 +53,17 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 #%{__autoconf}
 #%{__autoheader}
 #%{__automake}
-%configure --sbindir=/sbin
+%configure \
+	--sbindir=/sbin \
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 %{__make} install \
         DESTDIR=$RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
-
 %find_lang %{name}
 
 %clean
@@ -82,22 +81,16 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-
 %doc %{_docdir}/*
-
 %{_mandir}/man5/*
 %{_mandir}/man8/*
 %{_usr}/share/%{name}/*
-
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %attr(600,root,root) %{_sysconfdir}/%{name}/secrets
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-
 %attr(755,root,root) /sbin/mount.davfs
 %attr(755,root,root) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
-
 %lang(de) %{_mandir}/de/man5/*
 %lang(de) %{_mandir}/de/man8/*
-
 %lang(es) %{_mandir}/es/man5/*
