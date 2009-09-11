@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - 
 Name:		davfs2
 Version:	1.4.1
 Release:	0.3
-License:	GPL
+License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
 URL:		http://savannah.nongnu.org/projects/davfs2
@@ -15,7 +15,6 @@ BuildRequires:	rpmbuild(macros) >= 1.118
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
-Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Requires:	neon >= 0.24
