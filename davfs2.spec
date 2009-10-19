@@ -35,10 +35,10 @@ This package contains the caching version of davfs.
 
 %description -l pl.UTF-8
 WebDAV to bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie.
-Zazwyczaj protokół HTTP jest protokołem tylko do odczytu ale po
-zainstalowaniu DAVa staje się on również zapisywalnym. Co więcej jeśli
-używasz DAVfs to możesz montować swój serwer WWW jako system plików i
-używać tak jak normalnego dysku.
+Zazwyczaj protokół HTTP jest protokołem tylko do odczytu, lecz po
+zainstalowaniu DAVa staje się on również zapisywalny. Dodatkowo DAVfs
+umożliwia montowanie serwera WWW jako systemu plików, co pozwala na
+używanie go jak normalnego dysku.
 
 Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 
