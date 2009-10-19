@@ -1,11 +1,12 @@
 Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
-Version:	1.4.1
-Release:	0.3
+Version:	1.4.3
+Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
+# Source0-md5:	e7ed914757cf2102febc2ded56e3b043
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -21,7 +22,6 @@ Requires:	neon >= 0.24
 Provides:	group(davfs2)
 Provides:	user(davfs2)
 Conflicts:	davfs
-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -36,9 +36,9 @@ This package contains the caching version of davfs.
 %description -l pl.UTF-8
 WebDAV to bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie.
 Zazwyczaj protokół HTTP jest protokołem tylko do odczytu ale po
-zainstalowaniu DAVa staje się on również zapisywalnym. Co więcej
-jeśli używasz DAVfs to możesz montować swój serwer WWW jako
-system plików i używać tak jak normalnego dysku.
+zainstalowaniu DAVa staje się on również zapisywalnym. Co więcej jeśli
+używasz DAVfs to możesz montować swój serwer WWW jako system plików i
+używać tak jak normalnego dysku.
 
 Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 
