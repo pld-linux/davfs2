@@ -86,8 +86,8 @@ fi
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %attr(600,root,root) %{_sysconfdir}/%{name}/secrets
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-%attr(755,root,root) /sbin/mount.davfs
-%attr(755,root,root) /sbin/umount.davfs
+%attr(4750,root,davfs2) /sbin/mount.davfs
+%attr(4750,root,davfs2) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
 %lang(de) %{_mandir}/de/man[58]/*
 %lang(es) %{_mandir}/es/man5/*.5*
