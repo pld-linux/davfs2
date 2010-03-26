@@ -1,3 +1,5 @@
+# TODO:
+# - %attr(755,davfs2,davfs2) %{_var}/cache/%{name} - Shouldn't it be 700?
 Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
@@ -90,5 +92,6 @@ fi
 %attr(4750,root,davfs2) /sbin/mount.davfs
 %attr(4750,root,davfs2) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
-%lang(de) %{_mandir}/de/man[58]/*
+%lang(de) %{_mandir}/de/man5/*.5*
+%lang(de) %{_mandir}/de/man8/*.8*
 %lang(es) %{_mandir}/es/man5/*.5*
