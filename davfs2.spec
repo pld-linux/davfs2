@@ -22,6 +22,7 @@ Requires:	neon >= 0.24
 Provides:	group(davfs2)
 Provides:	user(davfs2)
 Conflicts:	davfs
+Conflicts:	setup < 2.7.2-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
