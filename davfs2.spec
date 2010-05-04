@@ -3,12 +3,12 @@
 Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
-Version:	1.4.5
+Version:	1.4.6
 Release:	0.1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
-# Source0-md5:	e209a7e663c20671afea309178eae734
+# Source0-md5:	c9e8aeb15daeba4b6283b40bb640e908
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf
 BuildRequires:	automake
