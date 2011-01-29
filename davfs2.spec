@@ -12,6 +12,7 @@ Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{v
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gettext-devel
 BuildRequires:	neon-devel >= 0.24
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.118
