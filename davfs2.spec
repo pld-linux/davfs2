@@ -3,17 +3,17 @@
 Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
 Name:		davfs2
-Version:	1.4.7
-Release:	2
+Version:	1.5.2
+Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases-noredirect/davfs2/%{name}-%{version}.tar.gz
-# Source0-md5:	c75f9d7d260e7364362b89beba2b3186
+# Source0-md5:	376bc9346454135cba78afacbcb23f86
 URL:		http://savannah.nongnu.org/projects/davfs2
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gettext-tools
-BuildRequires:	neon-devel >= 0.24
+BuildRequires:	autoconf >= 2.69
+BuildRequires:	automake >= 1.11.6
+BuildRequires:	gettext-tools >= 0.18.1
+BuildRequires:	neon-devel >= 0.27
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpmbuild(macros) >= 1.118
 Requires(postun):	/usr/sbin/groupdel
@@ -21,7 +21,7 @@ Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
-Requires:	neon >= 0.24
+Requires:	neon >= 0.27
 Provides:	group(davfs2)
 Provides:	user(davfs2)
 Conflicts:	davfs
@@ -64,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
 
 %{__make} install \
-        DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT
 
 %find_lang %{name}
 
@@ -83,7 +83,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc %{_docdir}/*
+%doc AUTHORS BUGS ChangeLog FAQ NEWS README THANKS TODO
 %{_mandir}/man5/*.5*
 %{_mandir}/man8/*.8*
 %{_datadir}/%{name}
