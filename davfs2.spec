@@ -1,14 +1,14 @@
 # TODO:
 # - %attr(755,davfs2,davfs2) %{_var}/cache/%{name} - Shouldn't it be 700?
 Summary:	Web-based Distributed Authoring and Versioning - caching version
-Summary(pl.UTF-8):	Bazujące na WWW Rozproszone Autoryzowanie i Wersjonowanie - wersja z cache
+Summary(pl.UTF-8):	WebDAV (oparty na WWW system kontroli wersji) - wersja z cache
 Name:		davfs2
-Version:	1.6.0
+Version:	1.7.0
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases/davfs2/%{name}-%{version}.tar.gz
-# Source0-md5:	930487ab22664a73fa8938483752eb03
+# Source0-md5:	0f992e1ff8b0e1e8c7c414e258b3c99b
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1.11.6
@@ -55,7 +55,7 @@ Ten pakiet zawiera wersję davfs korzystającą z cache'u.
 %{__autoheader}
 %{__automake}
 %configure \
-	--sbindir="/sbin"
+	--sbindir=/sbin
 
 %{__make}
 
@@ -65,6 +65,9 @@ install -d $RPM_BUILD_ROOT%{_var}/cache/%{name}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 %find_lang %{name}
 
@@ -84,15 +87,17 @@ fi
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog FAQ NEWS README THANKS TODO
-%{_mandir}/man5/*.5*
-%{_mandir}/man8/*.8*
+%attr(4750,root,davfs2) /sbin/mount.davfs
+%attr(4750,root,davfs2) /sbin/umount.davfs
 %{_datadir}/%{name}
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %attr(600,root,root) %{_sysconfdir}/%{name}/secrets
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
-%attr(4750,root,davfs2) /sbin/mount.davfs
-%attr(4750,root,davfs2) /sbin/umount.davfs
 %attr(755,davfs2,davfs2) %{_var}/cache/%{name}
-%lang(de) %{_mandir}/de/man5/*.5*
-%lang(de) %{_mandir}/de/man8/*.8*
-%lang(es) %{_mandir}/es/man5/*.5*
+%{_mandir}/man5/davfs2.conf.5*
+%{_mandir}/man8/mount.davfs.8*
+%{_mandir}/man8/umount.davfs.8*
+%lang(de) %{_mandir}/de/man5/davfs2.conf.5*
+%lang(de) %{_mandir}/de/man8/mount.davfs.8*
+%lang(de) %{_mandir}/de/man8/umount.davfs.8*
+%lang(es) %{_mandir}/es/man5/davfs2.conf.5*
