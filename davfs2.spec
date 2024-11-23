@@ -3,12 +3,12 @@
 Summary:	Web-based Distributed Authoring and Versioning - caching version
 Summary(pl.UTF-8):	WebDAV (oparty na WWW system kontroli wersji) - wersja z cache
 Name:		davfs2
-Version:	1.7.0
+Version:	1.7.1
 Release:	1
 License:	GPL v3+
 Group:		Networking/Utilities
 Source0:	http://download.savannah.gnu.org/releases/davfs2/%{name}-%{version}.tar.gz
-# Source0-md5:	0f992e1ff8b0e1e8c7c414e258b3c99b
+# Source0-md5:	111387e01cebdb0d42eaa8f8b1df2a28
 URL:		http://savannah.nongnu.org/projects/davfs2
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1.11.6
@@ -86,7 +86,7 @@ fi
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS BUGS ChangeLog FAQ NEWS README THANKS TODO
+%doc AUTHORS BUGS ChangeLog FAQ NEWS README.md THANKS TODO
 %attr(4750,root,davfs2) /sbin/mount.davfs
 %attr(4750,root,davfs2) /sbin/umount.davfs
 %{_datadir}/%{name}
